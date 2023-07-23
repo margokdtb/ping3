@@ -26,7 +26,7 @@ with open('hasil_websocket80.txt', 'w') as hasil_file:
         result = f'{proxy["http"]}\n'
         
         try:
-            response = requests.get(urls[0], headers=headers, proxies=proxy, timeout=3)
+            response = requests.head(urls[0], headers=headers, proxies=proxy, timeout=3)
             
             if response.elapsed.total_seconds() > 3:
                 # result += 'timeout\n'
