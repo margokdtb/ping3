@@ -19,8 +19,8 @@ if konfirmasi.lower() == 'y':
         for host in unique_hosts:
             file.write(host + '\n')
             
-    import os
-    os.system("python unik3.py")
+    #import os
+    #os.system("python unik3.py")
 
     print('\n Data telah disimpan di subdomain.txt')
 
