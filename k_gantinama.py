@@ -20,7 +20,7 @@ def copy_and_rename_file(source_folder):
         old_filename = files[index]
         new_filename = "sumber_knock.txt"
         shutil.copy(os.path.join(source_folder, old_filename), os.path.join(source_folder, new_filename))
-        print(f"\nFile {old_filename} telah dicopy dan diganti namanya menjadi sumber_knock.txt")
+        #print(f"\nFile {old_filename} telah dicopy dan diganti namanya menjadi sumber_knock.txt")
     except (ValueError, FileNotFoundError, IndexError):
         print("\nPilihan file tidak valid")
 
@@ -40,7 +40,7 @@ def move_file(source_folder, destination_folder):
     
     try:
         shutil.move(source_file, destination_file)
-        print("File sumber_knock.txt telah dipindahkan ke folder sebelumnya.")
+        #print("File sumber_knock.txt telah dipindahkan ke folder sebelumnya.")
     except FileNotFoundError:
         print("File sumber_knock.txt tidak ditemukan.")
     except shutil.Error:
