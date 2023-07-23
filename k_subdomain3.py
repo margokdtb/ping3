@@ -27,4 +27,4 @@ with open("subdomain.txt", "w") as file:
         file.write(ip + "\n")
         
 
-print("\n Hasil disimpan di subdomain.txt.")
+print("\n Proses Selesai... \n Hasil disimpan di subdomain.txt \n")

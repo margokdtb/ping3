@@ -13,7 +13,7 @@ def copy_and_rename_file(source_folder):
     print("\nDaftar file:")
     for i, filename in enumerate(files):
         print(f"{i+1}. {filename}")
-    choice = input("Pilih nomor file yang akan dicopy dan diganti namanya: ")
+    choice = input("Pilih nomor file : ")
 
     try:
         index = int(choice) - 1
