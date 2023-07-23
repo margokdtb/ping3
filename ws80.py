@@ -22,15 +22,15 @@ headers = {
 
 with open('hasil_websocket80.txt', 'w') as hasil_file:
     for proxy in proxies:
-        print(f'Proxy: {proxy}')
+        print(f'{proxy["http"]}')
         result = f'{proxy["http"]}\n'
         
         try:
             response = requests.get(urls[0], headers=headers, proxies=proxy, timeout=3)
             
             if response.elapsed.total_seconds() > 3:
-                result += 'Respon melebihi 3 detik, melewati...\n'
-                print('Respon melebihi 3 detik, melewati...')
+                # result += 'timeout\n'
+                print('timeout')
                 print('----')
                 continue
                 
@@ -38,13 +38,13 @@ with open('hasil_websocket80.txt', 'w') as hasil_file:
             
             if status_code == 200:
                 #result += f'Kode Respon HTTP: {status_code}\n'
-                print(f'Kode Respon HTTP: {status_code}')
+                print(f'Respon : {status_code} Ok')
                 
                 hasil_file.write(result)
 
         except:
-            result += 'Proxy tidak valid, melewati...\n'
-            print('Proxy tidak valid, melewati...')
+            result += 'tidak valid, melewati...\n'
+            print('tidak valid, melewati...')
         
-        result += '----\n'
+        #result += '----\n'
         print('----')
