@@ -10,10 +10,11 @@ def display_menu():
     print("Menu:")
     print("1. Cari Sub Domain (Koneksi Internet) ")
     print("2. Convert Hasil")
-    print("3. Scan WS dan WS SSL (Koneksi paket data)")
-    print("4. Scan SNI  ")
-    print("5. Ping SNI  ")
-    print("6. Sumber PCAPdroid (isi sumber_pcapdroid.txt) ")
+    print("3. Scan WS Direct (Koneksi paket data)")
+    print("4. Scan WS PORT 80 443 ")
+    print("5. Scan SNI  ")
+    print("6. Ping SNI  ")
+    print("7. Sumber PCAPdroid (isi sumber_pcapdroid.txt) ")
        
     print("0. Keluar")
 
@@ -25,11 +26,14 @@ def run_file(file_number):
     elif file_number == 3:
         os.system("python3 ws.py")
     elif file_number == 4:
-        os.system("python3 sni1.py")
+        os.system("python3 ws2.py")
+        
     elif file_number == 5:
+        os.system("python3 sni1.py")
+    elif file_number == 6:
         os.system("python3 sni2.py")
         
-    elif file_number == 6:
+    elif file_number == 7:
         os.system("python3 datalama.py")    
          
         
