@@ -2,49 +2,41 @@ print("\n\n SCAN WS PORT 80 \n")
 
 import requests
 
-urls = ['http://api.myxl.xlaxiata.co.id']
+url = 'http://spesialuntukmu.xlaxiata.co.id'
+timeout = 2 # Batas waktu tunggu dalam detik
 
-proxies = []
-
-# Membaca file hasil2_direct.txt sebagai sumber proxy
+# Baca file proxy
 with open('hasil2_direct.txt', 'r') as file:
-    proxy_list = file.readlines()
-    # Menambahkan setiap baris di file sebagai proxy dalam bentuk yang sesuai
-    for proxy in proxy_list:
-        proxies.append({'http': proxy.strip()})
+    proxy_list = file.read().splitlines()
 
 headers = {
-    'Host': 'api.myxl.xlaxiata.co.id',
+    'Host': 'id3tr.jagoan.vip',
     'Connection': 'Upgrade',
     'User-Agent': '[ua]',
     'Upgrade': 'websocket'
 }
 
-with open('hasil_websocket80.txt', 'w') as hasil_file:
-    for proxy in proxies:
-        print(f'{proxy["http"]}')
-        result = f'{proxy["http"]}\n'
-        
-        try:
-            response = requests.head(urls[0], headers=headers, proxies=proxy, timeout=3)
-            
-            if response.elapsed.total_seconds() > 2:
-                # result += 'timeout\n'
-                print('timeout')
-                print('----')
-                continue
-                
-            status_code = response.status_code
-            
-            if status_code == 200:
-                #result += f'Kode Respon HTTP: {status_code}\n'
-                print(f'Respon : {status_code} Ok')
-                
-                hasil_file.write(result)
+with open('hasil_websocket80.txt', 'w') as hasil_file:  # Buka file hasil
+    for proxy in proxy_list:
+        proxy_with_port = f'http://{proxy}:80'
+        proxy2 = f'{proxy}'
+        proxies = {
+            'http': proxy_with_port
+        }
 
-        except:
-            result += 'tidak valid, melewati...\n'
-            print('tidak valid, melewati...')
-        
-        #result += '----\n'
-        print('----')
+        try:
+            response = requests.head(url, proxies=proxies, headers=headers,  timeout=timeout)
+            if response.status_code == 200:
+                hasil = f'{proxy2}, Respon: {response.status_code}'
+                hasil2 = f'{proxy2}\n'
+                hasil_file.write(hasil2)
+                print(hasil)
+            else:
+                print(f'{proxy2}, Invalid respon')
+            # break  # Berhenti setelah mendapatkan respons yang berhasil
+        except requests.exceptions.RequestException as e:
+            print(f'{proxy2}: timeout')
+        except requests.exceptions.Timeout:
+            print(f'{proxy2}: timeout')
+        except requests.exceptions.ProxyError:
+            print(f'{proxy2}: not valid')
