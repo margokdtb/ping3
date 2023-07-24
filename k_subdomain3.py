@@ -19,10 +19,10 @@ for key, value in data.items():
 
 # Save the results to subdomain.txt
 with open("subdomain.txt", "w") as file:
-    file.write("Hosts:\n")
+    #file.write("Hosts:\n")
     for host in hosts:
         file.write(host + "\n")
-    file.write("\nIPs:\n")
+    #file.write("\nIPs:\n")
     for ip in ips:
         file.write(ip + "\n")
         
